@@ -1,32 +1,5 @@
-# 1 adb shell getevent : /dev/input/event4
-# 2 adb shell getevent | grep dev/input/event2 > getevent_input.txt : reacord to txt convert decimal to hexadecimal
-# 3 move hex to input
-# 4 push to sdcard
-# 5 adb shell sh /sdcard/xx.sh
-'''
-使用流程
-1 找到3*5个键的坐标：只需要左上 右上 左下 右下
-    使用adb shell getevent -l 命令 得到X，Y坐标值分别为十六进制数
-    将这4个位置的16进制填入代码中
-    同时找到输入设备 /dev/input/event4或者其它的
-
-2 指定乐谱，格式：忽略“|”和其它空白字符，允许数字1234567+1.2.3.4.5.6.7.+1..
-    多键 使用()，空白音使用-，使用[flag]制作flag，使用<flag:1>向前跳转，默认跳1次
-
-    变奏？使用$0.1改变时间
-    notes = [x,x,x,[x,x,x],0.23,x,[x,x],1.0,x]
-    同时按用{}
-
-如果将来改为脚本播放，一定要禁用跳转。
-
-3 python play.py
-
-sendevent /dev/input/event0 0001 0114 00000001
-sendevent /dev/input/event0 0000 0000 00000000
-sendevent /dev/input/event0 0001 0114 00000000
-sendevent /dev/input/event0 0000 0000 00000000
-
-'''
+# by ztx97
+# https://github.com/zhangtianxiang
 import os
 import sys
 import pprint
